@@ -1,0 +1,50 @@
+.header,
+.nav-list,
+.header-left {
+  display: flex;
+}
+
+.header,
+.header-left {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  gap: 2rem;
+}
+
+.header-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.header {
+  padding: 2rem;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+.nav-list {
+  list-style: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-list li {
+  font-size: 1.8rem;
+}
+
+.nav-list li a:link,
+.nav-list li a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav-list li a:link.active,
+.nav-list li a:visited.active {
+  text-decoration: underline;
+}
