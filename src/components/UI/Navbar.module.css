@@ -43,3 +43,8 @@
   text-decoration: none;
   color: #000;
 }
+
+.nav-list li a:link.active,
+.nav-list li a:visited.active {
+  text-decoration: underline;
+}

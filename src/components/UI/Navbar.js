@@ -12,15 +12,27 @@ const Navbar = () => (
     <nav className={styles.nav}>
       <ul className={styles['nav-list']}>
         <li>
-          <NavLink to="/">Rockets</NavLink>
+          <NavLink to="/" className={({ isActive }) => (isActive ? `${styles.active}` : undefined)}>
+            Rockets
+          </NavLink>
         </li>
         <li>|</li>
         <li>
-          <NavLink to="/missions">Missions</NavLink>
+          <NavLink
+            to="/missions"
+            className={({ isActive }) => (isActive ? `${styles.active}` : undefined)}
+          >
+            Missions
+          </NavLink>
         </li>
         <li>|</li>
         <li>
-          <NavLink to="/profile">My Profile</NavLink>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => (isActive ? `${styles.active}` : undefined)}
+          >
+            My Profile
+          </NavLink>
         </li>
       </ul>
     </nav>
