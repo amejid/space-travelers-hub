@@ -10,7 +10,7 @@ const Missions = () => {
   useEffect(() => {
     dispatch(GetMissionsFromApi());
   },
-  [dispatch]);
+  []);
 
   return (
     <div className="mission-container">
@@ -25,9 +25,11 @@ const Missions = () => {
         {missions.map((itemArr) => (
           itemArr.map((mission) => (
             <DisplayMission
-              name={mission.mission_name}
+              id={mission.id}
+              name={mission.name}
               description={mission.description}
-              key={mission.mission_id}
+              reserved={mission.reserved}
+              key={mission.id}
             />
           ))))}
       </table>
