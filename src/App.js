@@ -1,11 +1,18 @@
-import NavLink from './routes/NavLink';
-import ReduxRockets from './components/rockets/ReduxRockects';
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './components/UI/Navbar';
+import Missions from './routes/Missions';
+import Profile from './routes/Profile';
+import Rockets from './routes/Rockets';
 
 const App = () => (
-  <div className="">
-    <NavLink />
-    <ReduxRockets />
-  </div>
+  <>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Rockets />} />
+      <Route path="/missions" element={<Missions />} />
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
+  </>
 );
 
 export default App;

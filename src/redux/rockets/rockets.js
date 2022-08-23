@@ -1,8 +1,9 @@
-const GET_CURRENT_ROCKETS_SUCCESS = 'spaceApp/rockets/GET_CURRENT_MISSIONS_SUCCESS';
+const GET_ROCKETS = 'spaceApp/rockets/GET_ROCKETS';
+
 const initialRockets = [];
 const rocketsReducer = (state = initialRockets, action) => {
   switch (action.type) {
-    case GET_CURRENT_ROCKETS_SUCCESS:
+    case GET_ROCKETS:
       return null;
 
     default:
