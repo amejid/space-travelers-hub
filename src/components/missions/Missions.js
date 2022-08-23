@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { GetMissionsFromApi } from '../../redux/missions/missions';
 
 const Missions = () => {
-  useSelector((state) => state.missions);
+ const missions =  useSelector((state) => state.missions);
   const dispatch = useDispatch();
 
   useEffect(() => {
