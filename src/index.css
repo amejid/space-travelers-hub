@@ -1,13 +1,36 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 65.2%;
 }
 
-body {
-  font-family: sans-serif;
+.mission-table {
+  margin-top: 16px;
+  border-collapse: collapse;
+}
+
+.mission-container {
+  margin: 0 32px;
+}
+
+.display-mission-tr th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 16px 4px;
+}
+
+.display-mission-font {
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.display-mission-bold {
+  font-size: 16px;
 }
