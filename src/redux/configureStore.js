@@ -7,7 +7,6 @@ const rootReducer = combineReducers({
   rockets: rocketsReducer,
   missions: missionsReducer,
 });
-const store = configureStore({ reducer: rootReducer },
-  applyMiddleware(logger));
+const store = configureStore({ reducer: rootReducer }, applyMiddleware(logger));
 
 export default store;
