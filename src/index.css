@@ -13,6 +13,10 @@ body {
   font-family: 'Nunito Sans', sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 .mission-table {
   margin-top: 16px;
   border-collapse: collapse;
