@@ -3,12 +3,18 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
-  cursor: pointer;
-  font-family: 'Nunito Sans', sans-serif;
 }
 
 html {
-  font-size: 65.2%;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+button {
+  cursor: pointer;
 }
 
 .mission-table,
@@ -44,5 +50,7 @@ html {
 }
 
 .profile-table-container {
-  margin-left: 32px;
+  padding: 3.2rem;
+  display: flex;
+  gap: 4rem;
 }
