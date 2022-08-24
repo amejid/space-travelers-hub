@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { becomeMember } from '../../redux/missions/missions';
-
+let initialState = true;
 const DisplayMission = (props) => {
+
   const {
     id, name, description, reserved,
   } = props;
+ 
   const dispatch = useDispatch();
+
   const joinMission = () => {
-    dispatch(becomeMember(id));
+    if(initialState){
+      dispatch(becomeMember(id));
+    }
+    initialState = false;    
   };
 
   const btnBadge = reserved ? 'Leave Mission' : 'Join Mission';
@@ -17,17 +23,17 @@ const DisplayMission = (props) => {
   return (
     <tbody>
       <tr className="display-mission-tr">
-        <th className="display-mission-bold">{name}</th>
-        <th className="display-mission-font">{description}</th>
-        <th>{memberBadge}</th>
-        <th>
+        <td className="display-mission-bold">{name}</td>
+        <td className="display-mission-font">{description}</td>
+        <td>{memberBadge}</td>
+        <td>
           <button
             type="button"
             onClick={joinMission}
           >
             {btnBadge}
           </button>
-        </th>
+        </td>
       </tr>
     </tbody>
   );
