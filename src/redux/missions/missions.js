@@ -14,7 +14,7 @@ const missionsReducer = (state = initialMissions, action) => {
         if (mission.id !== action.id) {
           return mission;
         }
-        return { ...mission, reserved: true };
+        return { ...mission, reserved: !mission.reserved };
       }));
 
     default:

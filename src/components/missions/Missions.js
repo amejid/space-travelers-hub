@@ -16,12 +16,14 @@ const Missions = () => {
     <div className="mission-container">
       <hr />
       <table className="mission-table">
-        <tr className="display-mission-tr">
-          <th className="display-mission-bold">Missions</th>
-          <th className="display-mission-bold">Description</th>
-          <th className="display-mission-bold">Status</th>
-          <th>{' '}</th>
-        </tr>
+        <thead>
+          <tr className="display-mission-tr">
+            <th className="display-mission-bold">Missions</th>
+            <th className="display-mission-bold">Description</th>
+            <th className="display-mission-bold">Status</th>
+            <th>{' '}</th>
+          </tr>
+        </thead>
         {missions.map((itemArr) => (
           itemArr.map((mission) => (
             <DisplayMission
