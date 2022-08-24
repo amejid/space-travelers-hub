@@ -4,12 +4,17 @@ import { getRockets } from '../../redux/rockets/rockets';
 import Rocket from './Rocket';
 import styles from './Rockets.module.css';
 
+let isInitial = true;
+
 const Rockets = () => {
   const dispatch = useDispatch();
   const rockets = useSelector((state) => state.rockets);
 
   useEffect(() => {
-    dispatch(getRockets());
+    if (isInitial) {
+      dispatch(getRockets());
+      isInitial = false;
+    }
   }, []);
 
   return (

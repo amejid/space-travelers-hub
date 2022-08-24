@@ -1,0 +1,25 @@
+.profile {
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.box {
+  list-style: none;
+  border: 1px solid #999;
+}
+
+.box li {
+  padding: 0.8rem;
+  font-size: 1.8rem;
+}
+
+.box li:not(:last-child) {
+  border-bottom: 1px solid #999;
+}
+
+.title {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+}
