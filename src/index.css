@@ -11,7 +11,8 @@ html {
   font-size: 65.2%;
 }
 
-.mission-table {
+.mission-table,
+.profile-table {
   margin-top: 16px;
   border-collapse: collapse;
 }
@@ -20,7 +21,9 @@ html {
   margin: 0 32px;
 }
 
-.display-mission-tr th {
+.display-mission-tr th,
+.profile-th,
+.profile-td {
   border: 1px solid #ddd;
   text-align: left;
   padding: 16px 4px;
@@ -31,6 +34,15 @@ html {
   line-height: 24px;
 }
 
-.display-mission-bold {
+.display-mission-bold,
+.profile-table {
   font-size: 16px;
+}
+
+.profile-table {
+  width: 600px;
+}
+
+.profile-table-container {
+  margin-left: 32px;
 }

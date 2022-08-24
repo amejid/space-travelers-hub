@@ -3,19 +3,20 @@ import MISSIONS_API from '../../api/API';
 
 const GET_MISSIONS_SUCCESS = 'spaceApp/missions/GET_CURRENT_MISSIONS_SUCCESS';
 const JOIN_MISSION = 'spaceApp/missions/JOIN_MISSION';
+
 const initialMissions = [];
 const missionsReducer = (state = initialMissions, action) => {
   switch (action.type) {
     case GET_MISSIONS_SUCCESS:
-      return [...state, action.organizedMission];
+      return action.organizedMission;
 
     case JOIN_MISSION:
-      return state.map((missionArr) => missionArr.map((mission) => {
+      return state.map((mission) => {
         if (mission.id !== action.id) {
           return mission;
         }
         return { ...mission, reserved: !mission.reserved };
-      }));
+      });
 
     default:
       return state;

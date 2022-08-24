@@ -21,19 +21,18 @@ const Missions = () => {
             <th className="display-mission-bold">Missions</th>
             <th className="display-mission-bold">Description</th>
             <th className="display-mission-bold">Status</th>
-            <th>{' '}</th>
+            <th> </th>
           </tr>
         </thead>
-        {missions.map((itemArr) => (
-          itemArr.map((mission) => (
-            <DisplayMission
-              id={mission.id}
-              name={mission.name}
-              description={mission.description}
-              reserved={mission.reserved}
-              key={mission.id}
-            />
-          ))))}
+        {missions.map((mission) => (
+          <DisplayMission
+            id={mission.id}
+            name={mission.name}
+            description={mission.description}
+            reserved={mission.reserved}
+            key={mission.id}
+          />
+        ))}
       </table>
     </div>
   );
