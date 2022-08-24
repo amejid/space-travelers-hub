@@ -3,12 +3,17 @@ import { useEffect } from 'react';
 import { GetMissionsFromApi } from '../../redux/missions/missions';
 import DisplayMission from './DisplayMissions';
 
+let isInitial = true;
+
 const Missions = () => {
   const missions = useSelector((state) => state.missions);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GetMissionsFromApi());
+    if (isInitial) {
+      dispatch(GetMissionsFromApi());
+      isInitial = false;
+    }
   }, []);
 
   return (
@@ -22,7 +27,7 @@ const Missions = () => {
             <th> </th>
           </tr>
         </thead>
-        {missions.map((itemArr) => itemArr.map((mission) => (
+        {missions.map((mission) => (
           <DisplayMission
             id={mission.id}
             name={mission.name}
@@ -30,7 +35,7 @@ const Missions = () => {
             reserved={mission.reserved}
             key={mission.id}
           />
-        )))}
+        ))}
       </table>
     </div>
   );

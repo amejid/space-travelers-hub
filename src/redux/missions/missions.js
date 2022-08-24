@@ -7,15 +7,15 @@ const initialMissions = [];
 const missionsReducer = (state = initialMissions, action) => {
   switch (action.type) {
     case GET_MISSIONS_SUCCESS:
-      return [...state, action.organizedMission];
+      return action.organizedMission;
 
     case JOIN_MISSION:
-      return state.map((missionArr) => missionArr.map((mission) => {
+      return state.map((mission) => {
         if (mission.id !== action.id) {
           return mission;
         }
         return { ...mission, reserved: !mission.reserved };
-      }));
+      });
 
     default:
       return state;
