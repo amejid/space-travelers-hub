@@ -6,9 +6,9 @@ const DisplayMission = (props) => {
   const {
     id, name, description, reserved,
   } = props;
- 
+
   const dispatch = useDispatch();
-  const joinMission = () =>  dispatch(becomeMember(id));
+  const joinMission = () => dispatch(becomeMember(id));
 
   const btnBadge = reserved ? 'Leave Mission' : 'Join Mission';
   const memberBadge = reserved ? 'Active Member' : 'NOT A MEMBER';

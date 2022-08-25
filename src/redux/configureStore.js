@@ -9,4 +9,9 @@ const rootReducer = combineReducers({
 });
 const store = configureStore({ reducer: rootReducer }, applyMiddleware(logger));
 
+// for performing test
+export const setupStore = (preloadedState) => configureStore({ reducer: rootReducer },
+  applyMiddleware(logger),
+  preloadedState);
+
 export default store;
