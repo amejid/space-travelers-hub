@@ -5,10 +5,11 @@ const GET_MISSIONS_SUCCESS = 'spaceApp/missions/GET_CURRENT_MISSIONS_SUCCESS';
 const JOIN_MISSION = 'spaceApp/missions/JOIN_MISSION';
 
 
-consconst initialMissions = [];
+const initialMissions = [];
 const missionsReducer = (state = initialMissions, action) => {
   switch (action.type) {
-    case GET_MISSIONS_SUCC      return action.organizedMission;
+    case GET_MISSIONS_SUCCESS:
+       return action.organizedMission;
 
     case JOIN_MISSION:
       return state.map((mission) => {
@@ -17,8 +18,9 @@ const missionsReducer = (state = initialMissions, action) => {
         }
         return { ...mission, reserved: !mission.reserved };
       });
-}));
- return state;
+
+      default:
+         return state;
   }
 };
 
@@ -42,13 +44,13 @@ export const fetchMission = (data) => {
   };
 };
 
-export const GetMissionsFromApi = () = async (dispatch) => {
+export const GetMissionsFromApi = () => async (dispatch) => {
   try {
     const missions = await axios.get(MISSIONS_API);
   const { data } = missions;
    return dispatch(fetchMission(data));
   } catch (error) {
-    return error(error);
+    new Error(error);
   }   
 }; 
   

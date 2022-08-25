@@ -74,7 +74,7 @@ const create = () => {
 describe('testing for Middleware', () => {
   test('passes through non-function action', () => {
     const { next, invoke } = create();
-    const action = { type: 'GET_MISSIONS_SUCCESS' };
+    const action = { type: 'GET_MISSIONS' };
     invoke(action);
     expect(next).toHaveBeenCalledWith(action);
   });
