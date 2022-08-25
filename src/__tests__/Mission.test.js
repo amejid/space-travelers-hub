@@ -5,19 +5,44 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { setupStore } from '../redux/configureStore';
 import Missions from '../components/missions/missions';
+import MISSIONS_API from '../api/API';
+
+ 
+
 
 const handlers = [
-  rest.get('https://api.spacexdata.com/v3/missions', (req, res, ctx) => res(ctx.json(
-    {
-      id: 1,
-      name: 'My mission',
-      description: 'Moving to sky',
-      reserved: false,
-    },
-  ), ctx.delay(150))),
-];
+  rest.post(MISSIONS_API, (req, res, ctx) => {
+    
+    sessionStorage.setItem('is-authenticated', 'true')
+    return res(    
+      ctx.status(200),
+    )
+  }),
 
-export default handlers;
+  rest.get(MISSIONS_API, (req, res, ctx) => {    
+    const isAuthenticated = sessionStorage.getItem('is-authenticated')
+    if (!isAuthenticated) {
+      // If not authenticated, respond with a 403 error
+      return res(
+        ctx.status(403),
+        ctx.json({
+          errorMessage: 'Not authorized',
+        }),
+      )
+    }
+    // If authenticated, return a mocked user details
+    return res(
+      ctx.status(200),
+      ctx.json({       
+          id: 1,
+          name: 'My Mission',
+          description: 'Moving to sky',   
+          reserved: false,        
+      }),
+    )
+  }),
+]
+
 const server = setupServer(...handlers);
 
 beforeAll(() => server.listen());
@@ -32,20 +57,21 @@ function renderWithRedux(
     ...renderMissions
   } = {},
 ) {
-  const Wrapper = () => (
+  const Wrapper = ({ children }) => (
     <Provider store={store}>
-      <Missions />
+      { children }
     </Provider>
   );
   return { store, ...render(ui, { wrapper: Wrapper, ...renderMissions }) };
 }
 
 describe('Testing for Mission components', () => {
-  test('fetches missions data from external API', async () => {
-    renderWithRedux(<Missions />);
+
+  test('Should not redner on DOM', async () => {
+    renderWithRedux(<Missions />);    
     expect(screen.queryByText(/Missions\.\./i)).not.toBeInTheDocument();
   });
-});
+ });
 
 //  Integrated testing for redux actions, reducers and redux thunk
 // first creat a middleware function
