@@ -3,18 +3,21 @@ import { useEffect } from 'react';
 import { GetMissionsFromApi } from '../../redux/missions/missions';
 import DisplayMission from './DisplayMissions';
 
+let isInitial = true;
+
 const Missions = () => {
   const missions = useSelector((state) => state.missions);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GetMissionsFromApi());
-  },
-  []);
+    if (isInitial) {
+      dispatch(GetMissionsFromApi());
+      isInitial = false;
+    }
+  }, []);
 
   return (
     <div className="mission-container">
-      <hr />
       <table className="mission-table">
         <thead>
           <tr className="display-mission-tr">

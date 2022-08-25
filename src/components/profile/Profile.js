@@ -1,26 +1,31 @@
 import { useSelector } from 'react-redux';
+import styles from './Profile.module.css';
 
 const Profile = () => {
+  const rockets = useSelector((state) => state.rockets);
   const missions = useSelector((state) => state.missions);
-  const reservedMissions = missions.filter((mission) => mission.reserved === true);
+
+  const rocketsFiltered = rockets.filter((rocket) => rocket.reserved === true);
+  const missionsFiltered = missions.filter((mission) => mission.reserved === true);
 
   return (
-    <div className="profile-table-container">
-      <hr />
-      <table className="profile-table">
-        <thead>
-          <tr>
-            <th className="profile-th">My Missions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reservedMissions.length > 0 && reservedMissions.map(({ id, name }) => (
-            <tr key={id}>
-              <td className="profile-td">{name}</td>
-            </tr>
+    <div className={styles.profile}>
+      <div>
+        <p className={styles.title}>My Missions</p>
+        <ul className={styles.box}>
+          {missionsFiltered.map((mission) => (
+            <li key={mission.id}>{mission.name.trim()}</li>
           ))}
-        </tbody>
-      </table>
+        </ul>
+      </div>
+      <div className={styles.title}>
+        <p className={styles.title}>My Rockets</p>
+        <ul className={styles.box}>
+          {rocketsFiltered.map((rocket) => (
+            <li key={rocket.id}>{rocket.name.trim()}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
