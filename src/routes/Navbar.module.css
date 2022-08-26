@@ -41,7 +41,7 @@
 .nav-list li a:link,
 .nav-list li a:visited {
   text-decoration: none;
-  color: #000;
+  color: #0290ff;
 }
 
 .nav-list li a:link.active,

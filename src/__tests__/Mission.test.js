@@ -2,25 +2,20 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { rest } from 'msw';
+import PropTypes from 'prop-types';
 import { setupServer } from 'msw/node';
 import { setupStore } from '../redux/configureStore';
 import Missions from '../components/missions/missions';
 import MISSIONS_API from '../api/API';
 
- 
-
-
 const handlers = [
   rest.post(MISSIONS_API, (req, res, ctx) => {
-    
-    sessionStorage.setItem('is-authenticated', 'true')
-    return res(    
-      ctx.status(200),
-    )
+    sessionStorage.setItem('is-authenticated', 'true');
+    return res(ctx.status(200));
   }),
 
-  rest.get(MISSIONS_API, (req, res, ctx) => {    
-    const isAuthenticated = sessionStorage.getItem('is-authenticated')
+  rest.get(MISSIONS_API, (req, res, ctx) => {
+    const isAuthenticated = sessionStorage.getItem('is-authenticated');
     if (!isAuthenticated) {
       // If not authenticated, respond with a 403 error
       return res(
@@ -28,20 +23,20 @@ const handlers = [
         ctx.json({
           errorMessage: 'Not authorized',
         }),
-      )
+      );
     }
     // If authenticated, return a mocked user details
     return res(
       ctx.status(200),
-      ctx.json({       
-          id: 1,
-          name: 'My Mission',
-          description: 'Moving to sky',   
-          reserved: false,        
+      ctx.json({
+        id: 1,
+        name: 'My Mission',
+        description: 'Moving to sky',
+        reserved: false,
       }),
-    )
+    );
   }),
-]
+];
 
 const server = setupServer(...handlers);
 
@@ -51,27 +46,22 @@ afterAll(() => server.close());
 
 function renderWithRedux(
   ui,
-  {
-    preloadedState = {},
-    store = setupStore(preloadedState),
-    ...renderMissions
-  } = {},
+  { preloadedState = {}, store = setupStore(preloadedState), ...renderMissions } = {},
 ) {
-  const Wrapper = ({ children }) => (
-    <Provider store={store}>
-      { children }
-    </Provider>
-  );
+  const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
+
+  Wrapper.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
   return { store, ...render(ui, { wrapper: Wrapper, ...renderMissions }) };
 }
 
 describe('Testing for Mission components', () => {
-
   test('Should not redner on DOM', async () => {
-    renderWithRedux(<Missions />);    
+    renderWithRedux(<Missions />);
     expect(screen.queryByText(/Missions\.\./i)).not.toBeInTheDocument();
   });
- });
+});
 
 //  Integrated testing for redux actions, reducers and redux thunk
 // first creat a middleware function
