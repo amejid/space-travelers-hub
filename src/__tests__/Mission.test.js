@@ -5,7 +5,7 @@ import { rest } from 'msw';
 import PropTypes from 'prop-types';
 import { setupServer } from 'msw/node';
 import { setupStore } from '../redux/configureStore';
-import Missions from '../components/missions/missions';
+import Missions from '../components/missions/Missions';
 import MISSIONS_API from '../api/API';
 
 const handlers = [
