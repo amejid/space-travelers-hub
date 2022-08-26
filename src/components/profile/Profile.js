@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-
 import styles from './Profile.module.css';
 
 const Profile = () => {
